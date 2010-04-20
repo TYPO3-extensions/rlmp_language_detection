@@ -114,7 +114,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 					//Break out if the default languange is already selected
 					//Thanks to Stefan Mielke
 					$first = substr(key($acceptedLanguagesArr),0,2);
-					if ($first == $this->conf['defaultLang']) {
+					if ($first === $this->conf['defaultLang']) {
 						$preferredLanguageOrPageUid = 0;
 						break;
 					}
