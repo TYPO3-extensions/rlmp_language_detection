@@ -4,6 +4,7 @@
 *  
 *  (c) 2003-2006 robert lemke medienprojekte (rl@robertlemke.de)
 *  (c) 2008 Mathias Bolt Lesniak, LiliO Design (mathias@lilio.com)
+*  (c) 2010 Joachim Mathes, punkt.de GmbH (t3extensions@punkt.de)
 *  All rights reserved
 *
 *  This script is part of the Typo3 project. The Typo3 project is 
@@ -27,6 +28,7 @@
  *
  * @author	robert lemke medienprojekte <rl@robertlemke.de>
  * @author  Mathias Bolt Lesniak, LiliO Design <mathias@lilio.com>
+ * @author  Joachim Mathes, punkt.de GmbH <t3extensions@punkt.de>
  */
 
 
