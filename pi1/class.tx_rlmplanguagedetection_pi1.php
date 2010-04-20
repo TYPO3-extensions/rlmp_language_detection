@@ -120,9 +120,9 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 					}
 					
 					//Iterate through the user's accepted languages
-					for($i = 0; $i < count($acceptedLanguagesArr); $i++) {
+					for($j = 0; $j < count($acceptedLanguagesArr); $j++) {
 						$currentLanguage = array_values($acceptedLanguagesArr);
-						$currentLanguage = $currentLanguage[$i];
+						$currentLanguage = $currentLanguage[$j];
 						if($this->conf['debug']) print 'Testing language: ' . $currentLanguage . '<br />';
 						//If the current language is available (full "US_en" type check)
 						if(isset($availableLanguagesArr[$currentLanguage])) {
