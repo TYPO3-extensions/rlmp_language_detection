@@ -211,7 +211,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 				$sys_page->init(0);
 				$page = $sys_page->getPage($preferredLanguageOrPageUid);
 			}
-			$linkData = $GLOBALS['TSFE']->tmpl->linkData($page,'',0,'',array(),'&' . $this->conf['languageGPVar'] .'='.$preferredLanguageOrPageUid);
+			$linkData = $GLOBALS['TSFE']->tmpl->linkData($page,'',0,'',array(),'&' . $this->conf['languageGPVar'] . '=' . $preferredLanguageOrPageUid . "&" . t3lib_div::getIndpEnv('QUERY_STRING'));
 			$locationURL = $this->conf['dontAddSchemeToURL'] ? $linkData['totalURL'] : t3lib_div::locationHeaderUrl($linkData['totalURL']);
 			
 			//Prefer the base URL if available
