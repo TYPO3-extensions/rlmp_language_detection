@@ -223,6 +223,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 			
 			//Set session info
 			$GLOBALS["TSFE"]->fe_user->setKey('ses','tx_rlmplanguagedetection_languageSelected',TRUE);
+			$GLOBALS['TSFE']->storeSessionData();
 			
 			if($this->conf['debug']) echo $locationURL . '<br />';
 			if(!$this->conf['dieAtEnd'] && $preferredLanguageOrPageUid != 0) {
