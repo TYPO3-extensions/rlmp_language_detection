@@ -75,9 +75,11 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 			return $content;
 		}
 		
-		// Break out if the session tells ut that the user has selected language
-		if($GLOBALS["TSFE"]->fe_user->getKey('ses','tx_rlmplanguagedetection_languageSelected') == TRUE) {
-			return $content;
+		// Break out if the session tells us that the user has selected language
+		if (!$this->conf['dontBreakIfLanguageAlreadySelected']) {
+			if($GLOBALS["TSFE"]->fe_user->getKey('ses','tx_rlmplanguagedetection_languageSelected') == TRUE) {
+				return $content;
+			}
 		}
 		
 		//GATHER DATA
