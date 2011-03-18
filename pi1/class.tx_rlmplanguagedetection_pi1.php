@@ -296,20 +296,20 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery (
 			'lg_iso_2',
 			'static_languages',
-			'1'
+			'1=1'
 		);
 		if (!$this->conf['useOldOneTreeConcept'] && $res) {
 				// Table and field exist so create query for the new approach:
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery (
 				'sys_language.uid, static_languages.lg_iso_2 as isocode',
 				'sys_language LEFT JOIN static_languages ON sys_language.static_lang_isocode = static_languages.uid',
-				'1' . $this->cObj->enableFields ('sys_language') . $this->cObj->enableFields ('static_languages')
+				'1=1' . $this->cObj->enableFields ('sys_language') . $this->cObj->enableFields ('static_languages')
 			);
 		} else {
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery (
 				'sys_language.uid, sys_language.title as isocode',
 				'sys_language',
-				'1' . $this->cObj->enableFields ('sys_language')
+				'1=1' . $this->cObj->enableFields ('sys_language')
 			);
 		}
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
