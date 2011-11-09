@@ -318,7 +318,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 		$availableLanguages = array();
 		
 		if (strlen($this->conf['defaultLang'])) {
-			$availableLanguages[trim(strtolower($this->conf['defaultLang']))] = 0;
+			$availableLanguages[0] = trim(strtolower($this->conf['defaultLang']));
 		}
 	
 			// Two options: prior TYPO3 3.6.0 the title of the sys_language entry must be one of the two-letter iso codes in order
@@ -345,7 +345,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 			);
 		}
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
-			$availableLanguages[trim(strtolower($row['isocode']))] = $row['uid'];
+			$availableLanguages[$row['uid']] = trim(strtolower($row['isocode']));
 		}
 		
 		// Get the isocodes associated with the available sys_languade uid's
@@ -353,13 +353,14 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 				'sys_language.uid, static_languages.lg_iso_2 as isocode, static_languages.lg_country_iso_2',
 				'sys_language LEFT JOIN static_languages ON sys_language.static_lang_isocode=static_languages.uid',
-				'sys_language.uid IN('.implode(',',$availableLanguages).')'.
+				'sys_language.uid IN('.implode(',',array_keys($availableLanguages)).')'.
 					$this->cObj->enableFields('sys_language').
 					$this->cObj->enableFields('static_languages')
 				);
 			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))	{
-				$availableLanguages[trim(strtolower($row['isocode'] . ($row['lg_country_iso_2']? '-' . $row['lg_country_iso_2'] : '')))] = $row['uid'];
+				$tmpLanguages[trim(strtolower($row['isocode'] . ($row['lg_country_iso_2']? '-' . $row['lg_country_iso_2'] : '')))] = $row['uid'];
 			}
+			$availableLanguages = $tmpLanguages;
 		}
 		
 		//Remove all languages except limitToLanguages
