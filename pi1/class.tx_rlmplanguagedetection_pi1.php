@@ -275,7 +275,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 		}
 
 		if(TYPO3_DLOG)
-			t3lib_div::devLog('Location to redirect to: ' . $locationURL);
+			t3lib_div::devLog('Location to redirect to: ' . $locationURL, $this->extKey);
 		if(!$this->conf['dieAtEnd'] && $preferredLanguageOrPageUid != 0) {
 				header('Location: '.$locationURL);
 				//header('Referer: '.$locationURL);
@@ -360,7 +360,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 		}
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 			if (TYPO3_DLOG && !$row['isocode'])
-				t3lib_div::devLog('No ISO-code given for language with UID ' . $row['uid']);
+				t3lib_div::devLog('No ISO-code given for language with UID ' . $row['uid'], $this->extKey);
 			$availableLanguages[$row['uid']] = trim(strtolower($row['isocode']));
 		}
 		
