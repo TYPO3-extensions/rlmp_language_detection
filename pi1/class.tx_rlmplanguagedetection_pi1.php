@@ -94,7 +94,7 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 			if (isset($langSessKey)) {
 				// Can redirect only in one tree method for now
 				if ($this->conf['useOneTreeMethod'] && is_numeric($langSessKey)) {
-					$this->doRedirect($langSessKey);
+					$this->doRedirect($langSessKey, $referer);
 					return;
 				}
 
@@ -236,10 +236,10 @@ class tx_rlmplanguagedetection_pi1 extends tslib_pibase {
 			t3lib_div::devLog('END result: Preferred='.$preferredLanguageOrPageUid, $this->extKey);
 		
 		if ($preferredLanguageOrPageUid !== FALSE)
-			$this->doRedirect($preferredLanguageOrPageUid);
+			$this->doRedirect($preferredLanguageOrPageUid, $referer);
 	}
 
-	private function doRedirect($preferredLanguageOrPageUid) {
+	private function doRedirect($preferredLanguageOrPageUid, $referer) {
 		if ($this->conf['useOneTreeMethod']) {
 			$page = $GLOBALS['TSFE']->page;
 		} else {
